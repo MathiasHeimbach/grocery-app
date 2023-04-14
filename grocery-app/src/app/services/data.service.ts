@@ -7,11 +7,14 @@ import { ICategory } from '../models/category.model';
   providedIn: 'root',
 })
 export class DataService {
+
+private BASE_URL = 'https://orca-app-jhg4l.ondigitalocean.app/api';
+
   constructor(private http: HttpClient) {}
 
   getCategories(): Observable<ICategory[]> {
     return this.http.get<ICategory[]>(
-      'https://orca-app-jhg4l.ondigitalocean.app/api/category'
+      `${this.BASE_URL}/category`
     );
   }
 }
