@@ -9,7 +9,7 @@ import { DataService } from 'src/app/services/data.service';
 export class ProductsComponent implements OnInit {
 
   products: any[] = [];
-  catId: any;
+  catId = 3;
 
   constructor(private dataService: DataService) { }
 

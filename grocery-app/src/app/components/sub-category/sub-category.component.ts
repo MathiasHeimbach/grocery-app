@@ -7,7 +7,7 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./sub-category.component.css']
 })
 export class SubCategoryComponent implements OnInit {
-  catId: any;
+  catId = 3;
   subCategories: any[] = [];
 
   constructor(private dataService: DataService) { }

@@ -29,4 +29,10 @@ private BASE_URL = 'https://orca-app-jhg4l.ondigitalocean.app/api';
       `${this.BASE_URL}/products/cat/${catId}`
     );
   }
+
+  getProductById(id: any): Observable<any> {
+    return this.http.get<any>( `${this.BASE_URL}/products/${id}`
+    );
+  }
+
 }
