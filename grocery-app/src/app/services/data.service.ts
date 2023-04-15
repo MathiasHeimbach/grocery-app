@@ -17,4 +17,16 @@ private BASE_URL = 'https://orca-app-jhg4l.ondigitalocean.app/api';
       `${this.BASE_URL}/category`
     );
   }
+
+  getSubCategoryByCatId(catId: number): Observable<any> {
+    return this.http.get<any>(
+      `${this.BASE_URL}/subcategory/${catId}`
+    );
+  }
+
+  getProductsByCatId(catId: number): Observable<any> {
+    return this.http.get<any>(
+      `${this.BASE_URL}/products/cat/${catId}`
+    );
+  }
 }
