@@ -1,47 +1,112 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-3">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="wrapper">
+        <div class="{{ 'alert ' + alertClass }}" role="alert">
+          {{ responseText }}
         </div>
-        <div class="col-md-6">
-            <div class="wrapper">
-                <h2>Register</h2>
-                <hr />
-                <form  #registerForm="ngForm">
-                    <h2>{{ registerForm.value | json }}</h2>
-        
-                    <div class="form-group">
-                      <label for="">First Name</label>
-                      <input type="text" class="form-control" name="firstName"  />
-                    </div>
-          
-                    <div class="form-group">
-                      <label for="">Email</label>
-                      <input type="text" class="form-control" name="email"  />
-                    </div>
-          
-                    <div class="form-group">
-                      <label for="">Mobile</label>
-                      <input type="text" class="form-control" name="mobile" />
-                    </div>
-          
-                    <div class="form-group">
-                      <label for="">Password</label>
-                      <input type="text" class="form-control" name="password" />
-                    </div>
-          
-                    <input
-                      type="submit"
-                      value="Register"
-                      class="btn btn-primary btn-block"
-                    />
-                  </form>
-                  <br />
-                  <p class="text-center">
-                    Already registered <a href="/login">Click Here</a>
-                  </p>
-                </div>
-              </div>
-              <div class="col-md-3"></div>
+
+        <h2>Register</h2>
+        <hr />
+        <form #registerForm="ngForm" (submit)="onSubmitHandler()">
+          <div class="form-group">
+            <label for="">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="firstName"
+              [(ngModel)]="userModel.firstName"
+              #firstName="ngModel"
+              required
+              [class.is-invalid]="firstName.invalid && firstName.touched"
+            />
+            <small
+              class="text-danger"
+              [class.d-none]="firstName.valid || firstName.untouched"
+              >first name is required</small
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="">Email</label>
+            <input
+              type="text"
+              class="form-control"
+              name="email"
+              [(ngModel)]="userModel.email"
+              #email="ngModel"
+              required
+              [class.is-invalid]="email.invalid && email.touched"
+              pattern="[a-z0-9.%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            />
+            <div *ngIf="email.errors && email.touched">
+              <small class="text-danger" *ngIf="email.errors['required']"
+                >email is required</small
+              >
+              <small class="text-danger" *ngIf="email.errors['pattern']"
+                >email is not valid</small
+              >
             </div>
           </div>
-          
+
+          <div class="form-group">
+            <label for="">Mobile</label>
+            <input
+              type="text"
+              class="form-control"
+              name="mobile"
+              [(ngModel)]="userModel.mobile"
+              #mobile="ngModel"
+              required
+              [class.is-invalid]="mobile.invalid && mobile.touched"
+              pattern="^\d{10}$"
+            />
+            <div *ngIf="mobile.errors && mobile.touched">
+              <small class="text-danger" *ngIf="mobile.errors['required']"
+                >mobile is required</small
+              >
+              <small class="text-danger" *ngIf="mobile.errors['pattern']"
+                >mobile should be 10 digit</small
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="">Password</label>
+            <input
+              type="text"
+              class="form-control"
+              name="password"
+              [(ngModel)]="userModel.password"
+              #password="ngModel"
+              required
+              [class.is-invalid]="password.invalid && password.touched"
+              minlength="6"
+            />
+            <div *ngIf="password.errors && password.touched">
+              <small class="text-danger" *ngIf="password.errors['required']"
+                >password is required</small
+              >
+              <small class="text-danger" *ngIf="password.errors['minlength']"
+                >password should be 6 character long</small
+              >
+            </div>
+          </div>
+
+          <input
+            type="submit"
+            value="Register"
+            class="btn btn-primary btn-block"
+            [disabled]="registerForm.invalid"
+          />
+        </form>
+        <br />
+        <p class="text-center">
+          Already registered <a href="/login">Click Here</a>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>

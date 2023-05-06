@@ -6,6 +6,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { ProductDetailPageComponent } from './pages/product-detail-page/product-detail-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
 
 
 const routes: Routes = [
@@ -16,8 +17,8 @@ const routes: Routes = [
   { path: 'products/:catId', component: ProductPageComponent },
   { path: 'products/detail/:id', component: ProductDetailPageComponent },
   { path: 'about', component: AboutPageComponent },
-  { path: 'contact', component: ContactPageComponent }
-  ,
+  { path: 'contact', component: ContactPageComponent },
+  { path: 'register', component: RegisterPageComponent},
   { path: '**', component: ErrorComponent },
 
 ];
