@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
+
 
 @Component({
   selector: 'app-sub-category',
@@ -7,10 +9,13 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./sub-category.component.css']
 })
 export class SubCategoryComponent implements OnInit {
-  catId = 3;
+  catId: any;
   subCategories: any[] = [];
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,
+    private activatedRoute: ActivatedRoute) { 
+      this.catId = this.activatedRoute.snapshot.paramMap.get('catId');
+    }
 
   ngOnInit(): void {
     this.dataService.getSubCategoryByCatId(this.catId).subscribe((response) => {

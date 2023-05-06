@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -9,9 +10,12 @@ import { DataService } from 'src/app/services/data.service';
 export class ProductDetailPageComponent implements OnInit {
 
   product: any;
-  _id = '5de4a2b6a32d0906687812ea';
+  _id: any;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,
+    private activatedRoute: ActivatedRoute) { 
+      this._id = activatedRoute.snapshot.paramMap.get('id');
+    }
 
   ngOnInit(): void {
     this.dataService.getProductById(this._id).subscribe((response: any) => {
