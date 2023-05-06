@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class LoginPageComponent implements OnInit {
   responseText = '';
   alertClass = '';
 
-  constructor(private fb: FormBuilder, private authService: AuthService) { }
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) { }
 
   loginForm = this.fb.group({
     email: [null, [Validators.required, Validators.email]],
@@ -35,8 +36,13 @@ export class LoginPageComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe(
       (response) => {
         console.log(response)
-        this.responseText = response.message;
+
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('user', JSON.stringify(response.user))
+
+        this.responseText = 'login successful, thank you';
         this.alertClass = 'alert-success';
+        this.router.navigate(['home']);
       },
       (error) => {
         console.log(error)

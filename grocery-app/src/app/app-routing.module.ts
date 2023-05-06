@@ -8,14 +8,16 @@ import { ProductPageComponent } from './pages/product-page/product-page.componen
 import { ErrorComponent } from './pages/error/error.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { AuthGuard } from './guard/auth.guard';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'home', component: HomePageComponent
   },
-  { path: 'products/:catId', component: ProductPageComponent },
-  { path: 'products/detail/:id', component: ProductDetailPageComponent },
+  { path: 'products/:catId', component: ProductPageComponent, canActivate: [AuthGuard]},
+  { path: 'products/detail/:id', component: ProductDetailPageComponent, canActivate: [AuthGuard] },
   { path: 'about', component: AboutPageComponent },
   { path: 'contact', component: ContactPageComponent },
   { path: 'register', component: RegisterPageComponent},

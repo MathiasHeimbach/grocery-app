@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   register(data: any): Observable<any> {
     return this.http.post<any>(
@@ -22,4 +22,17 @@ export class AuthService {
       data
     );
   }
+
+  logout() {
+    localStorage.clear();
+  }
+
+  getToken(): boolean{
+    if(localStorage.getItem('token')){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
 }
