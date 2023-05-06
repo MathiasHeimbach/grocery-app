@@ -17,6 +17,7 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ErrorComponent } from './pages/error/error.component';
     ContactPageComponent,
     RegisterPageComponent,
     ErrorComponent,
+    LoginPageComponent,
   ],
   imports: [
     BrowserModule,

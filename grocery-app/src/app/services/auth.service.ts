@@ -15,4 +15,11 @@ export class AuthService {
       data
     );
   }
+
+  login(data: any): Observable<any> {
+    return this.http.post<any>(
+      'https://orca-app-jhg4l.ondigitalocean.app/api/auth/login',
+      data
+    );
+  }
 }

@@ -7,7 +7,7 @@ import { ProductDetailPageComponent } from './pages/product-detail-page/product-
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
-
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'about', component: AboutPageComponent },
   { path: 'contact', component: ContactPageComponent },
   { path: 'register', component: RegisterPageComponent},
+  { path: 'login', component: LoginPageComponent},
   { path: '**', component: ErrorComponent },
 
 ];
